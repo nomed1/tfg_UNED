@@ -1,4 +1,4 @@
-# titulo : Análisis de Malware en smartphones Android. Prototipo de integracion 
+# titulo : Análisis de Malware en smartphones Android. Prototipo de integración y automatización
 Desarrollo para seguimiento del prototipo para el tfg para la UNED: exereWare  
 alumno: Buenaventura Salcedo  
 director: Antonio Sanz  
