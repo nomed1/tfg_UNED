@@ -6,4 +6,4 @@ codirector: Roberto Hernandez
 profesor de apoyo: Rafael Pastor  
 
 ## Descripcion de fichero y carpetas:  
-propuesta_plan.md --> El plan de trabajo propuesto al codirector
+propuesta_plan.txt --> El plan de trabajo propuesto al codirector
