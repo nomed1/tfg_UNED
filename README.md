@@ -5,5 +5,5 @@ director: Antonio Sanz
 codirector: Roberto Hernandez  
 profesor de apoyo: Rafael Pastor  
 
-## Descripcion de fichero y carpetas:  
+## Descripcion de ficheros y carpetas:  
 propuesta_plan.txt --> El plan de trabajo propuesto al codirector
