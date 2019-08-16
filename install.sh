@@ -7,6 +7,8 @@ sudo apt-get install curl git python python-pip python-dev libffi-dev libssl-dev
 
 sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils python-libvirt -y
 
+sudo apt-get install android-tools-adb android-tools-fastboot -y
+
 #cuckoodroid
 cd ~/
 unzip ~/tfg/cuckoo.zip -d ~/
