@@ -27,5 +27,7 @@ También puede enviar muestras con:
 python ~/cuckoo/utils/submit.py ruta_de_la_muestra_apk  
 ~~~
 ## Descripcion de ficheros y carpetas:  
-propuesta_plan.txt --> El plan de trabajo propuesto al codirector  
-install.sh --> Descarga cuckoodroid ya configurado e instala todas sus dependencias.
+propuesta_plan.txt --> El plan de trabajo propuesto al codirector.  
+install.sh --> Descarga cuckoodroid ya configurado e instala todas sus dependencias.  
+cuckoo.zip --> Cuckoodroid configurado para trabajar con la MV android44 que puede encontrar en:  
+https://drive.google.com/open?id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L
