@@ -24,7 +24,7 @@ Para enviar una muestra y ver resultados (después podrá utilizar el cliente de
 ~~~
 python ~/cuckoo/utils/web.py  
 ~~~
-A continuación abra un navegador y vaya a la direccion 127.0.0.1:8080  
+A continuación abra un navegador y vaya a la dirección 127.0.0.1:8080  
 También puede enviar muestras con:  
 ~~~
 python ~/cuckoo/utils/submit.py ruta_de_la_muestra_apk  
