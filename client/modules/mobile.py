@@ -147,9 +147,9 @@ def triage_basic(device,info_path):
     print "Getting and saving conections info from device"
     com = Command("adb -s " + device + " shell  netstat >> " + info_path + "/" + "netstat.txt")
 
-    #print "Getting and saving dump info from device"
-    #print "!!!!!! this operation will be take a minute please wait !!!!!!"
-    #com = Command("adb -s " + device + " shell dumpsys >> " + info_path + "/" + "dumpsys.txt")
+    print "Getting and saving dump info from device"
+    print "!!!!!! this operation will be take a minute please wait !!!!!!"
+    com = Command("adb -s " + device + " shell dumpsys >> " + info_path + "/" + "dumpsys.txt")
 
     #esto hay que sincronizarlo de alguna manera para que pare
     #print "Getting and saving logcat info from device 20 seconds"
