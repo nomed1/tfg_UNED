@@ -4,6 +4,7 @@ alumno: Buenaventura Salcedo
 director: Antonio Sanz  
 codirector: Roberto Hernandez  
 profesor de apoyo: Rafael Pastor  
+funcionamiento exereWare alpha 0.1 https://www.youtube.com/watch?v=Qi4z1KGmm98  
 ## Instalación y puesta en marcha  
 IMPORTANTE: Use con Ubuntu 14.04(Recomendado) o 16.04, para otras versiones necesitará resolver dependencias python 2.7  
 Lea cuidadosamente las instrucciones que le ofrece en la ejecución install.sh y haga lo que se le indica:  
