@@ -6,7 +6,7 @@ codirector: Roberto Hernandez
 profesor de apoyo: Rafael Pastor  
 
 ## Instalación y puesta en marcha  
-IMPORTANTE: Use con Ubuntu 14.04(Recomendado) o 16.04, para otras versiones necesitará resolver dependencias python 2.7  
+IMPORTANTE: Use con Ubuntu 14.04(Recomendadísimo) para otras versiones necesitará resolver dependencias  
 Lea cuidadosamente las instrucciones que le ofrece en la ejecución install.sh y haga lo que se le indica:  
 Para instalar solo el entorno de cuckoodroid y probar su funcionamiento:  
 
