@@ -38,33 +38,32 @@ sudo chmod +s /usr/sbin/tcpdump
 # yara + pydeep(machine learning) + volatility
 
 sudo apt-get install yara ssdeep libfuzzy-dev volatility -y
-cd ~/
+cd ~/tfg
 git clone https://github.com/kbandla/pydeep.git
-cd ~/pydeep
+cd ~/tfg/pydeep
 sudo python setup.py install
 
 #virtualbox
 
-cd ~/
+cd ~/tfg
 wget https://download.virtualbox.org/virtualbox/6.0.10/virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
-sudo dpkg -i virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
+sudo dpkg -i ~/tfg/virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
 sudo apt-get install -f -y
 
 #extension_pack
 
-cd ~/
+cd ~/tfg
 wget https://download.virtualbox.org/virtualbox/6.0.10/Oracle_VM_VirtualBox_Extension_Pack-6.0.10.vbox-extpack
-echo "#######IMPORTANTE"
-echo "Instale extension pack que esta la carpeta de usaurio"
-echo "Despues cree una interfaz anfitrion (Host Only) en:"
-echo "Archivo - Administrador de red anfitrion - Crear"
-echo "el rango debe ser 192.168.56.1/24 y SIN DHCP"
-echo "despues agrege la MV android44 que puede descargar de:"
-echo "https://drive.google.com/open?id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L"
+sudo VBoxManage extpack install ~/tfg/Oracle_VM_VirtualBox_Extension_Pack-6.0.10.vbox-extpack
 
-read -rn1 -p "Pulse una tecla para terminar y lea las indicaciones..."
+#descargar, descomprimir y registrar MV android44 en virtualbox
+cd ~/tfg
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L" -O ~/tfg/android44.zip && rm -rf /tmp/cookies.txt
 
+unzip ~/tfg/android.zip -d ~/tfg
 
+VBoxManage hostonlyif create
+VBoxManage registervm ~/tfg/android44/android44.vbox
 
 #iptables
 
@@ -74,10 +73,10 @@ sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 
 sudo sysctl -w net.ipv4.ip_forward=1
 
-echo "#########"
+echo "###########################################################"
 echo "El entorno ha sido instalado."
-echo "Puede existir alguna dependencia"
-echo "rota que necesite instalar con sudo pip install"
-echo "el entorno de cuckoo esta configurado para la MV descargada"
-echo "tambien se han resuelto fallos de codigo en cuckoodroid"
+echo "Puede existir alguna dependencia rota"
+echo "y que necesite instalar con sudo pip install"
+echo "El entorno de cuckoo esta configurado para la MV descargada"
+echo "Tambien se han resuelto fallos de codigo en cuckoodroid"
 echo "lea la memoria del prototipo si tiene problemas"
