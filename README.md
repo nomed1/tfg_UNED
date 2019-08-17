@@ -16,7 +16,7 @@ git clone https://github.com/nomed1/tfg_UNED/ tfg
 sudo chmod +x ~/tfg/install.sh  
 ~/tfg/install.sh  
 ~~~
-Vaya a la carpeta de cuckoo y lancelo:
+Vaya a la carpeta de cuckoo y láncelo:
 ~~~
 python ~/cuckoo/cuckoo.py -d  
 ~~~
@@ -31,7 +31,7 @@ python ~/cuckoo/utils/submit.py ruta_de_la_muestra_apk
 ~~~
 ## Uso exereWare  
 exereWare es una propuesta de integración con cuckoodroid que funciona como cliente-servidor que usa RPC a través del puerto 9876.  
-Para ponerlo en funcionamiento cuckoodroid debe estar en estado de espera como se indico más arriba y a continuación desde otra terminal en el servidor debe ponerlo en escucha con:  
+Para ponerlo en funcionamiento cuckoodroid debe estar en estado de espera como se indicó más arriba y a continuación desde otra terminal en el servidor debe ponerse en escucha con:  
 ~~~  
 python ~/tfg/server/exereware_client.py  
 ~~~  
