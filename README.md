@@ -4,7 +4,7 @@ alumno: Buenaventura Salcedo
 director: Antonio Sanz  
 codirector: Roberto Hernandez  
 profesor de apoyo: Rafael Pastor  
-funcionamiento exereWare alpha 0.1 https://www.youtube.com/watch?v=Qi4z1KGmm98  
+
 ## Instalación y puesta en marcha  
 IMPORTANTE: Use con Ubuntu 14.04(Recomendado) o 16.04, para otras versiones necesitará resolver dependencias python 2.7  
 Lea cuidadosamente las instrucciones que le ofrece en la ejecución install.sh y haga lo que se le indica:  
@@ -39,6 +39,7 @@ Una vez que el servidor esta levantado podemos lanzar el cliente para buscar las
 ~~~  
 ~/tfg/client/client_exereware.py [opciones] <argumentos>  
 ~~~
+Aquí puede ver un video de funcionamiento para exereWare alpha 0.1 https://www.youtube.com/watch?v=Qi4z1KGmm98  
 ## Descripción de ficheros y carpetas:  
 propuesta_plan.txt --> El plan de trabajo propuesto al codirector.  
 install.sh --> Descarga cuckoodroid ya configurado e instala todas sus dependencias.  
