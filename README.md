@@ -28,7 +28,9 @@ A continuación abra un navegador y vaya a la dirección 127.0.0.1:8080
 También puede enviar muestras con:  
 ~~~
 python ~/cuckoo/utils/submit.py ruta_de_la_muestra_apk  
-~~~
+~~~  
+### IMPORTANTE: agregue al arranque el script net.sh para levantar las interfaces e iptables en cada reinicio del PC servidor  
+
 ## Uso exereWare  
 exereWare es una propuesta de integración con cuckoodroid que funciona como cliente-servidor que usa RPC a través del puerto 9876.  
 Para ponerlo en funcionamiento cuckoodroid debe estar en estado de espera como se indicó más arriba y a continuación desde otra terminal en el servidor debe ponerse en escucha con:  
