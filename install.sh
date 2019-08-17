@@ -62,7 +62,7 @@ sudo VBoxManage extpack install $MYFOLDER/Oracle_VM_VirtualBox_Extension_Pack-6.
 cd $MYFOLDER
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L" -O $MYFOLDER/android44.zip && rm -rf /tmp/cookies.txt
 
-unzip $MYFOLDER/android.zip -d $MYFOLDER
+unzip $MYFOLDER/android44.zip -d $MYFOLDER
 
 VBoxManage hostonlyif create
 VBoxManage registervm $MYFOLDER/android44/android44.vbox
