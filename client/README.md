@@ -14,4 +14,4 @@ sudo python exere_fix_adb.py
 ### muestras  
 Contiene uns muestras para analizar, cuidado es malware para android.  
 ### imágenes  
-![Vista cliente](/images/cliente1.png "exereware_client") 
+![Vista cliente](/images/cliente_01.png "exereware_client") 
