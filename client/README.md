@@ -1,4 +1,6 @@
 cliente exereWare para la subida masiva de muestras desde una carpeta o extrayendolas directamente de un smartphone para analizar sus apks.  
+# Revisiones  
+None
 ### client_exereware.py  
 Sirve para enviar lotes muestras usando RPC al servidor. Si no se cambia en el código supondrá que la ip del servidor es localhost y que se está ejecutando el servidor en la misma maquina, sino pues abra el puerto 9876 del servidor e indique su ip en el código del cliente.  
 ### exere_fix_adb.py  
