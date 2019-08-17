@@ -33,7 +33,7 @@ python ~/cuckoo/utils/submit.py ruta_de_la_muestra_apk
 exereWare es una propuesta de integración con cuckoodroid que funciona como cliente-servidor que usa RPC a través del puerto 9876.  
 Para ponerlo en funcionamiento cuckoodroid debe estar en estado de espera como se indico más arriba y a continuación desde otra terminal en el servidor debe ponerlo en escucha con:  
 ~~~  
-python ~/tfg/server/server_exereware.py  
+python ~/tfg/server/exereware_client.py  
 ~~~  
 Una vez que el servidor esta levantado podemos lanzar el cliente para buscar las muestras en una carpeta, pasarle una lista de rutas para cada muestra, conectando un telefono al PC y extrayendo directamente las muestras o una lista de ellas. Puede consultar todas las opciones con el parámetro -h. El cliente se lanza con:
 ~~~  
