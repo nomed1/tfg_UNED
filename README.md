@@ -45,6 +45,6 @@ propuesta_plan.txt --> El plan de trabajo propuesto al codirector.
 install.sh --> Descarga cuckoodroid ya configurado e instala todas sus dependencias.  
 cuckoo.zip --> Cuckoodroid configurado para trabajar con la MV android44 que puede encontrar en:  
 https://drive.google.com/open?id=1sfSuFk58CRD0KjuYiHDZ-jVaSM3TFT5L  
-client --> carpeta que contiene el cliente de exereWare, contiene ayuda.
-server --> carpeta que contiene el servidor de escucha de exereWare, contiene ayuda.
+client --> carpeta que contiene el cliente de exereWare, contiene ayuda.  
+server --> carpeta que contiene el servidor de escucha de exereWare, contiene ayuda.  
 memoria --> capítulos para organizar la memoria del TFG.
