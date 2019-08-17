@@ -67,6 +67,8 @@ unzip $MYFOLDER/android44.zip -d $MYFOLDER
 VBoxManage hostonlyif create
 VBoxManage registervm $MYFOLDER/android44/android44.vbox
 
+sudo ifconfig vboxnet0 192.168.56.1 netmask 255.255.255.0 up
+
 #iptables
 
 sudo iptables -A FORWARD -o INTERFAZ -i vboxnet0 -s 192.168.56.0/24 -m conntrack --ctstate NEW -j ACCEPT
