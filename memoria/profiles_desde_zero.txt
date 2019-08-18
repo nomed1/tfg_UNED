@@ -215,7 +215,120 @@ Esta decisión puede ser muy apreciada por el lector interesado, ya que el tiemp
 
 --El NDK
 
-He aquí la pieza fundamental del puzzle. El NDK no se trata de comenzar a elegir ndk al azar o ir probando uno a uno, sino que directamente hay que utilizar el que nos indica la documentacion que hay dentro de la descarga el propio kernel. Esto viene perfectamente documentado por ejemplo en el codigo fuente de los Samsung. Sin embargo y no se porque motivo encontrar esta vez el adecuado cuando trabajamos con máquinas virtuales para AVD y kernel goldfish o ranchu no es tarea fácil y hay que lidiar un poco con la documentación e incluso tener que probar algunos.
+Tenemos aquí la pieza fundamental del puzzle. EL NDK de Android segun este, es un conjunto de herramientas que nos permite implementar partes de las aplicaciones en codigo nativo mediante lenguaje C o C++. Lo que permite la reutilización de bibliotecas que hayan sido escritas en ese lenguaje.
+
+Existen diferentes versiones de NDK que han ido evolucionando con el trancurso de las versiones de Android. Para nuestro uso, que es el de la compilación del kernel, utilizaremos NDK para poder compilar para las distintas plataformas que necesitemos, arm, arm64, x86, x86-64,...
+
+Recordemos que la mayoria de drivers, modulos o bibliotecas necesarias estan escritas en C o C++ por tanto el NDK es elemento que nos va a permitir "enlazar" ese código con la generación del binario necesario para cada plataforma mencionada que necesitemos usar.
+
+El NDK no se trata de comenzar a elegir ndk al azar o ir probando uno a uno, sino que directamente hay que utilizar el que nos indica la documentacion que hay dentro del codigo fuente descargado para el propio kernel. 
+
+Esto debe venir documentado por ejemplo en el codigo fuente de los Samsung. Sin embargo y no se porque motivo encontrar esta vez el adecuado cuando trabajamos con máquinas virtuales para AVD y kernel goldfish o ranchu no es tarea fácil y hay que lidiar un poco con la documentación e incluso tener que probar algunos.
+
+En este punto debemos hablar de el TOOLCHAIN, que es la cadena de herramientas del NDK que se va a encargar de poder traducir la bibliotecas C/C++ en el codigo binario. Entra en juego el concepto de CROSS_COMPILE, es decir, la realización del cruce para la compilacion de las distintas arquitecturas y que es el toolchain quien se encarga de realizarlo.
+
+Siempre vamos a necesitar de un toolchain que se encargue de realizar el cruce de la compilación para la arquitectura deseada. Ese nombre el CROSS_COMPILE vamos a necesitar configurarlo en cada compilación para que la maquinaria de compilación sepa que toolchain utilizar para la traducción. Esto es importante y es el detalle al que mas importancia y atención hay que prestarle.
+
+Otros dos parámetros importantes a la hora de compilar van a ser las variables de entorno ARCH y SUBARCH, que junto con el CROSS_COMPILE, seran básicamente las que debamos definir antes de construir o compilar el kernel.
+
+ARCH y SUBARCH van a definir la plataforma o arquitectura destino a la que vamos a compilar. en el caso que nos atañe va a ser arm, pero podria ser x86 para 32 bit o cualquier otro target de arquitectura de destino.
+
+Lo normal es que antes de compilar o ejercutar el comando make exportemos esas 3 variables de entorno de la siguiente forma:
+
+export ARCH=la_arquitectura
+export SUBARCH=la_arquitectura
+export CROSS_COMPILE=/ruta/toolchain/elegido-
+
+por ejemplo para nuestro dispositivo virtual android 4.1.2 arm
+
+export ARCH=arm
+export SUBARCH=arm
+export CROS_COMPILE=arm-eabi-
+
+Fijese que el CROSS_COMPILE acaba con un guión, el cual es estrictamente necesario ya que si hechamos un vistazo a la carpeta de binarios podemos ver que todos utilizan el prefijo elejido y despues en el proceso de fabricación se le hirán añadiendo los distintos sufijos seleccionados según los vaya utilizando, es decir la cadena de herramientas de compilacion que realiza el make.
+
+[toolchain1]
+
+También podemos obviar la ruta completa o relativa al toolchain que vamos a utilizar siempre y cuando la hayamos inlcuido en el $PATH del sistema
+
+Le recomiendo lea la siguiente sección para aclarar algunas cuestiones de las variables de entorno mencionadas.
+
+--Más sobre el TOOLCHAIN
+
+Es normal que utilicemos el NDK que contiene el toolchain que google nos ofrece, pero ojo, hay fabricantes que utilizan su propios toolchain y por tanto no nos sirva el de google, esto puede ser justificado por el uso de drivers privativos y en ese caso deberían ofredernos el NDK correspondiente que contenga el toolchain necesario para poder compilar el kernel, esto puede suceder con los procesadores Tegra. No es lo normal, pero es algo que deberiamos tener en cuenta por si acaso nos sucede.
+
+Nosotros para evitar problemas nos hemos descargado todos los toolchain son 3.3gb aproximadamente en la carpeta toolchain de la carpeta de usuario con:
+
+git clone https://android.googlesource.com/platform/prebuilt
+
+Pued encontrarlos tambien en 
+
+http://www.codesourcery.com/
+
+aunque como podrá comprobar esa pagina a migrado a otro dominio y hay que registrarse, así sucede para dispositivos físicos como Samsung aunque nuevamente recordar que podemos usar los de google en principio.
+
+Otra forma de obtener el toolchain correcto es descargar el codigo fuente de la compilación de la distribución y realizar un build a la version que querriamos compilar con el fin de visualizar con el comando env de linux cual es la ruta al CROSS_COMPILE necesario para esa compilación y por tanto para el kernel que utiliza. La información de descargas del codgio fuente se vera en la siguiente sección y se hablará de las herrameintas git y repo. La información de construccion build es conviente revisarla y aparece en la carpeta Documents de los fuentes descargados.
+
+Otra formas mas de obtener los toolchains es buscarlos por inteenr como por ejemplo en:
+
+https://dn.odroid.com/toolchains/
+
+--Descargar fuentes.
+
+Dependiendo de
+
+GIT
+Por todos, en mayor o menos medida, es conocida la herramienta git, un gestor de versiones para el desarrollo de proyectos.
+
+Si el codigo fuente del kernel debemos conocer la dirección y realizar un clone, podemos recoger el proyecto git completo o bien seleccionar alguna version de este si la conocemos, con el comando 
+
+git clone <direccion> <version> <carpetadestino> 
+
+para poder visualizar las ramas tecleariamos
+
+git branch -a
+
+Donde podríamos ver las distintas ramas del proyecto
+
+
+Mencionamos esto porque en ocasiones en la información del kernel linux de android aparece el commit adecuado que se utilizo, podemos saberlo con el comando:
+
+adb shell cat /proc/version
+
+donde aparecera la version del kernel linux y en ocasiones aparecera el commit adecuado, de seer asi podriamos hacer un
+
+git checkout <numero_commit>
+
+para seleccionar justamente ese commit y trabajar con esa version que quedará activada debido a ese checkout, ofreciendonos solamente los ficheros involucrados para la compilación de ese kernel.
+
+REPO
+
+Repo es una herramienta similar a git o mejor dicho una herramienta que podemos utilizar en combinacion con git. No es ni mejor ni peor, simplemente es otra herramienta, pero que difiere en su uso.
+
+Dependiendo de la version de Ubuntu que usemos podemos encontrarlo en los repositorios con:
+
+sudo apt-get install repo
+
+Pero en nuestro ubuntu 14.04 no esta disponible y por tanto debemos ahcer los siguiente para utilizarlo:
+
+mkdir ~/bin
+PATH=~/bin:$PATH
+
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+
+NOTA.- podemos agregarlo al $PATH para hacerlo persistente en el fichero ~/.bashrc de la carpeta de usuario.
+
+Como vemos lo que ahcemos es crear una carpeta donde albergarlo y añadirla al $PATH, descargamos la herramienta y le damos permisos de ejecución.
+
+Una vez instalada la herramienta podemos sincronizar los repositiorios necesarios que albergan la fuentes
+
+
+
+
+
+
+
 
 
 
