@@ -1,3 +1,4 @@
+1.- Preparacion de la máquina virtual
 1.1.- Preparar la maquina con Android SDK
 
 Se ha elegido el sdk r24.0.2-linux.tgz para poder conocer completamente el uso de las herramientas del sdk y avd y como se lanzan los modulos desde la consola de comandos, aunque si bien es cierto que el android studio es más amigable, trabajando desde la consola podemos conocer mas afondo las distintas partes del sdk, donde encontrarlas y para que sirven.
@@ -128,7 +129,15 @@ Podría haber obviado estás aclaraciones pero sin conocer estos detalles, no po
 Dicha estrategia consiste en realizar una copia de la carpeta aosx.avd como aosx_1.avd y borrarla despues del analisis, y volver a hacer otra copia en el siguiente analisis y así sucesivamente, lo que hace que se demore cada analisis casi 3 minutos entre la operación de copia y el arranque en frío de la máquina virtual, lo cual al ser una emulación de arm conlleva una lentitud considerable para un análisis automático.
 
 
-1.3.- Preparación del dispositivo 
+1.3.- Preparación del dispositivo virtual para análisis
+
+Antes de seguir si al lanzar la maquina virtual se congela y no se recupera, pruebe lo siguiente:
+- Actualizar java a la version 8 mínimo, esto hara que funcione correctamente el depurador y poder identificar errores.
+- Si tiene tarjeta grafica NVIDIA:
+sudo apt-get update
+sudo apt-get purge nvidia-*
+sudo apt-get install nvidia-current-updates
+sudo reboot
 
 Bien una vez que hemos aclarado como debemos arrancar correctamente nuestro dispositivo virtual es momento de agregar una serie de características o funcionalidades que nos vendrán muy bien en los futuros análisis.
 
@@ -149,6 +158,68 @@ Hay que lanzarlo desde esa carpeta ya que contiene una serie de rutas relativas 
 Ademas hay que corregir una ruta añadiendo un punto (.) al path tal como se muestra en la imagen del script, si ha descargado el prototipo ese fragmento de código lo hemos corregido, pero si usa el del git oficial no lo han corregido todavia y provocara algunos errores en la comunicación con el agente.
 
 [error_create_guest_avd.png]
+
+Una vez colgadas todas las tools que nos ofrece cuckoodroid vamos a terminar de instalar los componentes y configurar las respuestas.
+
+Aunque en la guía de cuckoodroid no indican ningún order en las operaciones siguientes, se RECOMIENDA no tocar de memento la configuracion de supersu y respetar este orden:
+
+- Configurar la pantalla para que no se apague o retrasarlo 30 minutos
+- Configurar la seguridad del bloqueo de pantalla a Ninguno.
+- Activar en seguridad si no lo están los Orígenes de Fuentes de Terceros o Desconocidas.
+- Iniciar la aplicacion GenerateContacts o crearlos a mano :)
+- Abrir el XposedInstalled
+  -activar los modulos Droidmon y AntiDegub
+  -En framework pulsar en Intall/Update y permitir en el supersu
+    -Esto nos pedirá reiniciar NO REINICIAR, pulsar en cancelar
+    -Pulsar en SOFT REBOOT y aceptar.
+- Cuando se reincie el dispositivo configurar supersu para permitir a todas la aplicaciones que lo pidan ejercutar su.
+
+[imagenes]
+
+2.- Compilando kernels de android
+2.1.- Antes de empezar la compilación.
+
+Se eligió la version de ubuntu 14.04 porque he podido comprobar que es la que mejor se integra para ello, a parte de ser la recomendada en Android Source, tal y como vimos anteriormente.
+
+Pero compilar kernels para android no esta libre de errores y de horas desesperantes. Para versiones nuevas de android los requisitos son menos exigentes, es más, el mismo nivel de complejidad adquiere si en vez compilar kernels para AVD, queremos hacerlo para máquinas físicas. Aunque nuestro gran handicap que no hemos conseguido superar a sido compilar un kernel para la version android-x86-4.4-RC2.
+
+En el momento de montar el prototipo de analisis y segun las indicaciones y la línea de trabajo marcada por el director del proyecto, debiamos utilizar maquinas virtuales basadas en x86 para conseguir la máxima aceleración que nos ofrece KVM-qemu. Las máquinas disponibles corresponden al proyecto de android-x86.org, de hecho cuckoodroid recomienda, casi obligatoriamente más que una recomendación, utilizar android-x86-4.4-RC2. En ese punto cuckoodroid usa volatility y claro necesitamos un profile para poder analizar los volcados. Por tanto para crear ese perfil debemos realizar básicamente los siguientes paso:
+
+Compilar el kernel del dispostivo a analizar.
+Compilar LiME para realizar los volcadosde memoria.
+Compilar el profile para volatility.
+
+2.2.- Cumpliendo requisitos.
+
+Bien en el apartado preparando la maquina virtual con SDK anterior, hablamos de uan serie de dependencias que habia que cumplir y que ahora mismo recordamos que eran:
+
+sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip mesa-utils lib64stdc++6:i386
+
+para ubuntu 14.04 64 bits, para otras versiones se puede consultar como digimos la seccion de inicializacion del entorno de construcción.
+
+--El JDK
+
+Ahora debemos tener en cuenta el jdk a utilizar, que permite seleccionar la libreria a utilizar y que se integra con el core: 
+
+- Android 4.4.x o inferior es estrictamente necesario utilizar oracle-6-jdk. No nos sirve openjdk, esto lo hemos podido confirmar estudiando los Makefile y sus herederos en los que he intentado parchear los mensajes de error y efectivamente no compila si nos es con oracle-6-jdk. Ni tan siquiera la version 7 de este. Para la pruebas si lo desean en la carpeta tools de nuestro tfg he dejado una copia en formato .deb para que no tengan que lidiar por internet ni con las repos de ubuntu para encontrar este jdk, ya que la mayoría han cerrado su acceso a este jdk.
+
+- Android 5 o 6 debe ser compilado con oracle-7-jdk u openjdk-7-jdk
+
+- A partir de Android 7 se permite utilizar openjdk-8-jdk o superior.
+
+--El SDK
+
+Bien no vamos a entrar en detalles puesto que el sdk es necesario si vamos a crear compilaciones completas de android no solo el kernel, por tanto no vamos detenernos en este aspecto, ya que no vamos a necesitarlo para el kernel. 
+
+Esta decisión puede ser muy apreciada por el lector interesado, ya que el tiempo que yo he dedicado a darme cuenta de este hecho, es el tiempo que dicho lector se va a ahorrar en calentamientos de cabeza buscando esta información, en que version necesita para compilar el kernel.
+
+--El NDK
+
+He aquí la pieza fundamental del puzzle. El NDK no se trata de comenzar a elegir ndk al azar o ir probando uno a uno, sino que directamente hay que utilizar el que nos indica la documentacion que hay dentro de la descarga el propio kernel. Esto viene perfectamente documentado por ejemplo en el codigo fuente de los Samsung. Sin embargo y no se porque motivo encontrar esta vez el adecuado cuando trabajamos con máquinas virtuales para AVD y kernel goldfish o ranchu no es tarea fácil y hay que lidiar un poco con la documentación e incluso tener que probar algunos.
+
+
+
+
 
 
 
