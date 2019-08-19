@@ -39,7 +39,7 @@ python ~/tfg/server/server_exereware.py
 ~~~  
 Una vez que el servidor esta levantado podemos lanzar el cliente para buscar las muestras en una carpeta, pasarle una lista de rutas para cada muestra, conectando un telefono al PC y extrayendo directamente las muestras o una lista de ellas. Puede consultar todas las opciones con el parámetro -h. El cliente se lanza con:
 ~~~  
-python ~/tfg/client/client_exereware.py [opciones] <argumentos>  
+python ~/tfg/client/exereware_client.py [opciones] <argumentos>  
 ~~~
 Aquí puede ver un video de funcionamiento para exereWare alpha 0.1 https://www.youtube.com/watch?v=Qi4z1KGmm98  
 ## Descripción de ficheros y carpetas:  
