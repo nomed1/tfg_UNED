@@ -1,4 +1,4 @@
-### Ficheros ordenados por capítulos que componen la memoria del TFG.  
+### Ficheros ordenados por secciones y capítulos que componen la memoria del TFG.  
 
 tablaDeContenidos.odt  
 figurasYTablas.odt  
