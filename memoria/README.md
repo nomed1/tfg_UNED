@@ -2,7 +2,7 @@
 
 tablaDeContenidos.odt  
 figurasYTablas.odt  
-01_introduccion.odt  
+01_introduccion.odt (falta segunda revision ortográfica y gramatical)  
 referenciasBibliograficas.odt  
 anexoA.odt  
 
