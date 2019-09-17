@@ -12,6 +12,8 @@ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils python-
 
 sudo apt-get install android-tools-adb android-tools-fastboot -y
 
+sudo apt-get install p7zip-full -y
+
 #cuckoodroid
 cd ~/
 unzip $MYFOLDER/cuckoo.zip -d ~/
@@ -77,6 +79,17 @@ sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 
 sudo sysctl -w net.ipv4.ip_forward=1
+
+#riskindroid
+cd $MYFOLDER
+sudo apt-get install python3 python3-pip virtualenv -y
+git clone https://github.com/ClaudiuGeorgiu/RiskInDroid.git riskindroid
+cd riskindroid
+virtualenv -p python3 vriskindroid
+source vriskindroid/bin/activate
+pip3 install -r requirements.txt
+7z x $MYFOLDER/riskindroid/app/database/permission_db.7z
+deactivate
 
 echo "###########################################################"
 echo "El entorno ha sido instalado."
