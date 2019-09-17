@@ -14,6 +14,8 @@ sudo apt-get install android-tools-adb android-tools-fastboot -y
 
 sudo apt-get install p7zip-full -y
 
+sudo apt-get install python3 python3-pip virtualenv openjdk-8-jdk -y
+
 #cuckoodroid
 cd ~/
 unzip $MYFOLDER/cuckoo.zip -d ~/
@@ -84,7 +86,6 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 #riskindroid
 cd $MYFOLDER
-sudo apt-get install python3 python3-pip virtualenv -y
 git clone https://github.com/ClaudiuGeorgiu/RiskInDroid.git riskindroid
 cd riskindroid
 virtualenv -p python3 vriskindroid
