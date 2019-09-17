@@ -55,8 +55,9 @@ sudo python setup.py install
 cd $MYFOLDER
 #instala la version para 14.04(trusty) y 16.04(xenial) descomente la que necesite
 #wget https://download.virtualbox.org/virtualbox/6.0.10/virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
+#sudo dpkg -i $MYFOLDER/virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
 wget https://download.virtualbox.org/virtualbox/6.0.10/virtualbox-6.0_6.0.10-132072~Ubuntu~xenial_amd64.deb
-sudo dpkg -i $MYFOLDER/virtualbox-6.0_6.0.10-132072~Ubuntu~trusty_amd64.deb
+sudo dpkg -i $MYFOLDER/virtualbox-6.0_6.0.10-132072~Ubuntu~xenial_amd64.deb
 sudo apt-get install -f -y
 
 #extension_pack
