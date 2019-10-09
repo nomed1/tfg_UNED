@@ -6,7 +6,7 @@ export INTERFAZ=eth0
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get install curl git python python-pip python-dev libffi-dev libssl-dev mongodb python-dpkt  python-virtualenv -y
+sudo apt-get install curl git default-jdk python python-pip python-dev libffi-dev libssl-dev mongodb python-dpkt  python-virtualenv -y
 
 sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils python-libvirt -y
 
