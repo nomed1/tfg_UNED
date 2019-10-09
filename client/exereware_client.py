@@ -139,7 +139,7 @@ if __name__ == "__main__":
             #send_files(get_list_files_dir(device,"apk"))
         if option in ('-d'):
             print "Processing apks from Downloaded Aplications Section"
-            params = init_process("-d") #mode -d las apks que tiene descargadas el telefono
+            params = init_process("-3") #mode -d las apks que tiene debugables el telefono
             send_files(get_list_files_dir(params,"apk"))#params es el device
         if option in ('-a'):
             print "Processing all apks from Smartphone"
