@@ -33,6 +33,7 @@ def usage ( ):
 	-d                select only donwloads apks on the smartphone
  	-l <p1,p2,...pn>  select only apks in list on the smartphone
         -v                show availables apks on the smartphone
+        -x                show danger score from apks processed in tasks.txt
 
     """
 

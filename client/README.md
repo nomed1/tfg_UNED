@@ -11,7 +11,13 @@ Si utiliza el client_exereware.py e intenta usarlo con el telefono pero no lo de
 ~~~
 sudo python exere_fix_adb.py
 ~~~  
+
+tasks.txt es un fichero que registra los ficheros enviados con el siguiente formato:  
+id_task_en_el_servidor;md5;fecha;ruta_fichero_apk  
+el fichero se utiliza despues para poder conocer los riesgos de cada apk y poder conocer el id
+del report que queremos descargar.  
+
 ### muestras  
-Contiene uns muestras para analizar, cuidado es malware para android.  
+Contiene unas muestras para analizar, cuidado es malware para android.  
 ### imágenes  
 ![Vista cliente](/images/cliente_01.png "exereware_client") 

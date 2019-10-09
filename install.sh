@@ -14,8 +14,6 @@ sudo apt-get install android-tools-adb android-tools-fastboot -y
 
 sudo apt-get install p7zip-full -y
 
-sudo apt-get install python3 python3-pip virtualenv openjdk-8-jdk -y
-
 #cuckoodroid
 cd ~/
 unzip $MYFOLDER/cuckoo.zip -d ~/
@@ -25,7 +23,7 @@ sudo apt-get install python-bson
 sudo pip install sqlalchemy==0.9.9
 sudo pip install bson
 sudo pip install jinja2==2.8
-sudo pip install pymongo==3.0.3
+sudo pip install pymongo==3.0
 sudo pip install bottle
 sudo pip install pefile
 sudo pip install django==1.8.4
@@ -85,8 +83,13 @@ sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 
 sudo sysctl -w net.ipv4.ip_forward=1
 
+#permisos al init
+sudo chmod +x ~/tfg/init.sh
+sudo chmod +x ~/tfg/net.sh
+
 #riskindroid
 cd $MYFOLDER
+sudo apt-get install python3 python3-pip virtualenv -y
 git clone https://github.com/ClaudiuGeorgiu/RiskInDroid.git riskindroid
 cd riskindroid
 virtualenv -p python3 vriskindroid
